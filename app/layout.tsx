@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { Syne, Inter } from "next/font/google";
+import { Space_Grotesk, Syncopate } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-const syne = Syne({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
+  variable: "--font-space-grotesk",
 });
 
-const inter = Inter({
+const syncopate = Syncopate({
+  weight: ["400", "700"],
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+  variable: "--font-syncopate",
 });
 
 export const metadata: Metadata = {
-  title: "Manzar - AI Video Artist",
-  description: "Cinematic AI Video Services & Tools",
+  title: "Manzar 2025 | Visual Euphoria",
+  description: "An immersive audiovisual odyssey in Tokyo.",
 };
 
 export default function RootLayout({
@@ -27,20 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${syne.variable} ${inter.variable} font-sans antialiased bg-black text-white selection:bg-white/20`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </ThemeProvider>
+    <html lang="en">
+      <body className={`${spaceGrotesk.variable} ${syncopate.variable} antialiased bg-[#31326f] text-white overflow-x-hidden selection:bg-[#4fb7b3] selection:text-black`}>
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
