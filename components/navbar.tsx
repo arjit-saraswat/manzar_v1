@@ -10,7 +10,7 @@ const navItems = [
     { name: "Work", href: "/#work" },
     { name: "Services", href: "/#services" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Studio", href: "/dashboard" },
+    { name: "Studio", href: "/studio" },
 ]
 
 export function Navbar() {
