@@ -32,10 +32,10 @@ export default function Home() {
         {/* Header */}
         <div className="text-center space-y-4">
           <motion.h1
-            initial={{ opacity: 0, letterSpacing: "0.2em" }}
-            animate={{ opacity: 1, letterSpacing: "0.5em" }}
+            initial={{ opacity: 0, letterSpacing: "0.05em" }}
+            animate={{ opacity: 1, letterSpacing: "0.2em" }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
+            className="text-[11vw] sm:text-6xl md:text-8xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
           >
             manzar
           </motion.h1>
@@ -100,10 +100,10 @@ export default function Home() {
               <iframe
                 allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
                 frameBorder="0"
-                height="450"
+                height="352"
                 style={{ width: "100%", maxWidth: "660px", overflow: "hidden", borderRadius: "10px" }}
                 sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src="https://embed.music.apple.com/us/album/in-my-heart-single/1869065800"
+                src="https://embed.music.apple.com/us/album/in-my-heart-single/1869065800?theme=dark"
               />
             </motion.div>
           </div>
