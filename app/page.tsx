@@ -67,19 +67,19 @@ export default function Home() {
       <div className="fixed inset-0 z-0 backdrop-blur-[1px] pointer-events-none" />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-4xl px-6 py-16 flex flex-col items-center gap-12">
+      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 py-6 md:py-16 flex flex-col items-center gap-8 md:gap-12">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-2 md:space-y-4">
           <motion.h1
             initial={{ opacity: 0, letterSpacing: "0.05em" }}
             animate={{ opacity: 1, letterSpacing: "0.2em" }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="text-[12vw] sm:text-6xl md:text-8xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
+            className="text-[10vw] sm:text-6xl md:text-8xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
           >
             manzar
           </motion.h1>
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-2 md:gap-4">
             <button
               onClick={() => paginate(-1)}
               className="p-2 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all active:scale-90"
@@ -88,7 +88,7 @@ export default function Home() {
               <ChevronLeft className="w-5 h-5 text-white/60" />
             </button>
 
-            <div className="flex flex-col items-center min-w-[200px]">
+            <div className="flex flex-col items-center min-w-[160px] md:min-w-[200px]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.p
                   key={activeRelease.id}
@@ -101,12 +101,12 @@ export default function Home() {
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 }
                   }}
-                  className="text-xl md:text-2xl font-light italic text-emerald-100 tracking-wider text-center"
+                  className="text-lg md:text-2xl font-light italic text-emerald-100 tracking-wider text-center"
                 >
                   {activeRelease.title}
                 </motion.p>
               </AnimatePresence>
-              <span className="text-[10px] uppercase tracking-[0.4em] text-white/30 mt-1">{activeRelease.type}</span>
+              <span className="text-[8px] md:text-[10px] uppercase tracking-[0.4em] text-white/30 mt-0.5">{activeRelease.type}</span>
             </div>
 
             <button
@@ -120,7 +120,7 @@ export default function Home() {
         </div>
 
         {/* Multimedia Section - Swipable */}
-        <div className="w-full relative min-h-[800px] md:min-h-[700px]">
+        <div className="w-full relative min-h-[900px] sm:min-h-[800px] md:min-h-[700px]">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={activeRelease.id}
@@ -142,7 +142,7 @@ export default function Home() {
                   paginate(offset.x > 0 ? -1 : 1);
                 }
               }}
-              className="absolute inset-0 w-full flex flex-col gap-12 cursor-grab active:cursor-grabbing"
+              className="absolute inset-0 w-full flex flex-col gap-8 md:gap-12 cursor-grab active:cursor-grabbing"
             >
               {/* YouTube Video Section */}
               <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md relative">
@@ -158,7 +158,7 @@ export default function Home() {
               </div>
 
               {/* Audio Embeds */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pointer-events-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start pointer-events-auto">
                 {/* Spotify Embed */}
                 <div className="w-full">
                   <iframe
@@ -178,8 +178,8 @@ export default function Home() {
                   <iframe
                     allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
                     frameBorder="0"
-                    height="352"
-                    style={{ width: "100%", maxWidth: "660px", overflow: "hidden", borderRadius: "10px", background: "transparent" }}
+                    height="450"
+                    style={{ width: "100%", maxWidth: "100%", overflow: "hidden", borderRadius: "10px", background: "transparent" }}
                     sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
                     src={activeRelease.appleMusicUrl}
                   />
@@ -190,19 +190,20 @@ export default function Home() {
         </div>
 
         {/* Footer & Contact */}
-        <div className="w-full flex flex-col items-center gap-12 mt-8">
+        <div className="w-full flex flex-col items-center gap-8 md:gap-12 mt-8">
           {/* Man behind the Machine Section */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 1 }}
             className="flex flex-col items-center gap-2"
           >
-            <div className="flex items-center gap-2 text-white/60 text-sm tracking-widest uppercase">
+            <div className="flex items-center gap-2 text-white/60 text-xs md:text-sm tracking-widest uppercase">
               <User className="w-3 h-3" />
               <span>Man behind the Machine</span>
             </div>
-            <div className="text-white font-syncopate font-bold text-lg tracking-widest uppercase text-center">
+            <div className="text-white font-syncopate font-bold text-base md:text-lg tracking-widest uppercase text-center">
               Arjit Saraswat
             </div>
           </motion.div>
@@ -212,21 +213,21 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl border-t border-white/10 pt-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl border-t border-white/10 pt-8 md:pt-12 mb-12"
           >
             <a
               href="mailto:ahoy@manzar.one"
-              className="group flex flex-col items-center p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl transition-all duration-500"
+              className="group flex flex-col items-center p-4 md:p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl md:rounded-2xl transition-all duration-500"
             >
-              <span className="text-white/40 text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors">Collaborations</span>
-              <span className="text-white font-medium tracking-wider group-hover:scale-110 transition-transform text-center">ahoy@manzar.one</span>
+              <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors text-center">Collaborations</span>
+              <span className="text-sm md:text-base text-white font-medium tracking-wider group-hover:scale-105 transition-transform text-center break-all">ahoy@manzar.one</span>
             </a>
             <a
               href="mailto:arjit@manzar.one"
-              className="group flex flex-col items-center p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl transition-all duration-500"
+              className="group flex flex-col items-center p-4 md:p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl md:rounded-2xl transition-all duration-500"
             >
-              <span className="text-white/40 text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors">Connect with the Artist</span>
-              <span className="text-white font-medium tracking-wider group-hover:scale-110 transition-transform text-center font-syncopate">arjit@manzar.one</span>
+              <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors text-center">Connect with the Artist</span>
+              <span className="text-sm md:text-base text-white font-medium tracking-wider group-hover:scale-105 transition-transform text-center break-all">arjit@manzar.one</span>
             </a>
           </motion.div>
         </div>
