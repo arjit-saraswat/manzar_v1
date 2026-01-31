@@ -120,7 +120,7 @@ export default function Home() {
         </div>
 
         {/* Multimedia Section - Swipable */}
-        <div className="w-full relative min-h-[900px] sm:min-h-[800px] md:min-h-[700px]">
+        <div className="w-full relative min-h-[1200px] sm:min-h-[1000px] md:min-h-[850px]">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={activeRelease.id}
@@ -165,7 +165,7 @@ export default function Home() {
                     style={{ borderRadius: "12px" }}
                     src={activeRelease.spotifyUrl}
                     width="100%"
-                    height="352"
+                    height="450"
                     frameBorder="0"
                     allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
