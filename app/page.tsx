@@ -1,56 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Mail, User, ChevronLeft, ChevronRight } from 'lucide-react';
-
-const RELEASES = [
-  {
-    id: "in-my-heart",
-    title: "in my heart",
-    type: "Single",
-    youtubeId: "10JZ3qm14ec",
-    spotifyUrl: "https://open.spotify.com/embed/track/7rZejUtn8r10hNoEMsahL2?utm_source=generator",
-    appleMusicUrl: "https://embed.music.apple.com/us/album/in-my-heart-single/1869065800?theme=dark"
-  },
-  {
-    id: "tsunami-in-texas",
-    title: "Tsunami in Texas",
-    type: "Album",
-    youtubeId: "4hvILeunKXA",
-    spotifyUrl: "https://open.spotify.com/embed/album/1nNL2A7DYtQ85QG3xP4dRo?utm_source=generator",
-    appleMusicUrl: "https://embed.music.apple.com/in/album/tsunami-in-texas/1871992738?theme=dark"
-  }
-];
+import React from 'react';
+import { motion } from 'framer-motion';
+import { User, Youtube, Music2, Coffee } from 'lucide-react';
 
 export default function Home() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setActiveIndex((prevIndex) => (prevIndex + newDirection + RELEASES.length) % RELEASES.length);
-  };
-
-  const activeRelease = RELEASES[activeIndex];
-
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  };
-
   return (
     <main className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-x-hidden font-space-grotesk scroll-smooth">
       {/* Background Image with Overlay */}
@@ -68,125 +22,108 @@ export default function Home() {
 
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 py-6 md:py-16 flex flex-col items-center gap-8 md:gap-12">
+
+        {/* Buy Me a Coffee / Support Link */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full flex justify-center"
+        >
+          <a
+            href="https://buymeacoffee.com/manzar1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 rounded-full transition-all duration-300 group backdrop-blur-sm"
+          >
+            <Coffee className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+            <span className="text-white/80 text-xs md:text-sm font-medium tracking-widest uppercase">Contribute to the next &apos;manzar&apos;</span>
+          </a>
+        </motion.div>
+
         {/* Header */}
         <div className="text-center space-y-2 md:space-y-4">
           <motion.h1
             initial={{ opacity: 0, letterSpacing: "0.05em" }}
             animate={{ opacity: 1, letterSpacing: "0.2em" }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="text-[10vw] sm:text-6xl md:text-8xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
+            className="text-[12vw] sm:text-7xl md:text-9xl font-syncopate font-bold uppercase text-white drop-shadow-2xl"
           >
             manzar
           </motion.h1>
-
-          <div className="flex items-center justify-center gap-2 md:gap-4">
-            <button
-              onClick={() => paginate(-1)}
-              className="p-2 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all active:scale-90"
-              aria-label="Previous release"
-            >
-              <ChevronLeft className="w-5 h-5 text-white/60" />
-            </button>
-
-            <div className="flex flex-col items-center min-w-[160px] md:min-w-[200px]">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.p
-                  key={activeRelease.id}
-                  custom={direction}
-                  variants={variants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 }
-                  }}
-                  className="text-lg md:text-2xl font-light italic text-emerald-100 tracking-wider text-center"
-                >
-                  {activeRelease.title}
-                </motion.p>
-              </AnimatePresence>
-              <span className="text-[8px] md:text-[10px] uppercase tracking-[0.4em] text-white/30 mt-0.5">{activeRelease.type}</span>
-            </div>
-
-            <button
-              onClick={() => paginate(1)}
-              className="p-2 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all active:scale-90"
-              aria-label="Next release"
-            >
-              <ChevronRight className="w-5 h-5 text-white/60" />
-            </button>
-          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.6em]"
+          >
+            Artist Hub
+          </motion.p>
         </div>
 
-        {/* Multimedia Section - Swipable */}
-        <div className="w-full relative min-h-[1200px] sm:min-h-[1000px] md:min-h-[850px]">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={activeRelease.id}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = Math.abs(offset.x) > 50;
-                if (swipe) {
-                  paginate(offset.x > 0 ? -1 : 1);
-                }
-              }}
-              className="absolute inset-0 w-full flex flex-col gap-8 md:gap-12 cursor-grab active:cursor-grabbing"
+        {/* Multimedia Hub */}
+        <div className="w-full flex flex-col gap-8 md:gap-12 items-center">
+
+          {/* Spotify Artist Embed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="w-full max-w-2xl"
+          >
+            <iframe
+              data-testid="embed-iframe"
+              style={{ borderRadius: "12px" }}
+              src="https://open.spotify.com/embed/artist/4z4yO4lgjdyxz4pBD3G59F?utm_source=generator&theme=0"
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allowFullScreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
+          </motion.div>
+
+          {/* Social Links Hub */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <motion.a
+              href="https://www.youtube.com/@manzar-1?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 }}
+              className="group flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl transition-all duration-500"
             >
-              {/* YouTube Video Section */}
-              <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md relative">
-                <iframe
-                  className="w-full h-full pointer-events-auto"
-                  src={`https://www.youtube.com/embed/${activeRelease.youtubeId}?autoplay=0&mute=0&loop=1&playlist=${activeRelease.youtubeId}&controls=1&rel=0&modestbranding=1`}
-                  title={`manzar - ${activeRelease.title}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
-
-              {/* Audio Embeds */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start pointer-events-auto">
-                {/* Spotify Embed */}
-                <div className="w-full">
-                  <iframe
-                    style={{ borderRadius: "12px" }}
-                    src={activeRelease.spotifyUrl}
-                    width="100%"
-                    height="450"
-                    frameBorder="0"
-                    allowFullScreen={true}
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Apple Music Embed */}
-                <div className="w-full">
-                  <iframe
-                    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                    frameBorder="0"
-                    height="450"
-                    style={{ width: "100%", maxWidth: "100%", overflow: "hidden", borderRadius: "10px", background: "transparent" }}
-                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                    src={activeRelease.appleMusicUrl}
-                  />
+              <div className="flex items-center gap-4">
+                <Youtube className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform" />
+                <div className="flex flex-col">
+                  <span className="text-white font-medium tracking-wider">YouTube</span>
+                  <span className="text-white/30 text-[10px] uppercase tracking-widest leading-none mt-1">Subscribe</span>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <Youtube className="w-4 h-4 text-white/20 group-hover:text-white/60 transition-colors" />
+            </motion.a>
+
+            <motion.a
+              href="https://music.apple.com/in/artist/manzar/1868078180"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 }}
+              className="group flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl transition-all duration-500"
+            >
+              <div className="flex items-center gap-4">
+                <Music2 className="w-6 h-6 text-pink-400 group-hover:scale-110 transition-transform" />
+                <div className="flex flex-col">
+                  <span className="text-white font-medium tracking-wider">Apple Music</span>
+                  <span className="text-white/30 text-[10px] uppercase tracking-widest leading-none mt-1">Find the Artist</span>
+                </div>
+              </div>
+              <Music2 className="w-4 h-4 text-white/20 group-hover:text-white/60 transition-colors" />
+            </motion.a>
+          </div>
         </div>
 
         {/* Footer & Contact */}
@@ -208,7 +145,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Contact Emails - Moved to the very bottom */}
+          {/* Contact Emails */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
