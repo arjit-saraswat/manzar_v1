@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Syncopate } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { Analytics } from "@vercel/analytics/react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -15,8 +16,8 @@ const syncopate = Syncopate({
 });
 
 export const metadata: Metadata = {
-  title: "Manzar 2025 | Visual Euphoria",
-  description: "An immersive audiovisual odyssey in Tokyo.",
+  title: "Manzar",
+  description: "Contribute to the next manzar",
 };
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

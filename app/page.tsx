@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, Youtube, Music2, Coffee } from 'lucide-react';
+import { track } from '@vercel/analytics';
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
             href="https://buymeacoffee.com/manzar1"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track('Contribute_Click')}
             className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 rounded-full transition-all duration-300 group backdrop-blur-sm"
           >
             <Coffee className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
@@ -90,6 +92,7 @@ export default function Home() {
               href="https://www.youtube.com/@manzar-1?sub_confirmation=1"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track('YouTube_Redirect')}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
@@ -109,6 +112,7 @@ export default function Home() {
               href="https://music.apple.com/in/artist/manzar/1868078180"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track('AppleMusic_Redirect')}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
@@ -154,6 +158,7 @@ export default function Home() {
           >
             <a
               href="mailto:ahoy@manzar.one"
+              onClick={() => track('Email_Collaborations_Click')}
               className="group flex flex-col items-center p-4 md:p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl md:rounded-2xl transition-all duration-500"
             >
               <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors text-center">Collaborations</span>
@@ -161,6 +166,7 @@ export default function Home() {
             </a>
             <a
               href="mailto:arjit@manzar.one"
+              onClick={() => track('Email_Artist_Click')}
               className="group flex flex-col items-center p-4 md:p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl md:rounded-2xl transition-all duration-500"
             >
               <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-[0.4em] mb-2 group-hover:text-white/60 transition-colors text-center">Connect with the Artist</span>
